@@ -1,0 +1,74 @@
+import React from 'react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import '@testing-library/jest-dom';
+import {AppLayout} from '../components/AppLayout.jsx'; // Ensure this path is correct based on your project structure
+import { useAuth0 } from '@auth0/auth0-react';
+
+// Mock the useAuth0 hook from @auth0/auth0-react
+jest.mock('@auth0/auth0-react');
+
+jest.mock("react-router-dom" ,() => ({
+  useNavigate: () => jest.fn()
+}))
+
+// Setup for the useAuth0 mock
+const mockAuth0 = (isLoading = false, user = { email: 'test@example.com', name: 'Test User' }) => {
+  useAuth0.mockReturnValue({
+    isLoading,
+    user,
+    logout: jest.fn(),
+    getAccessTokenSilently: jest.fn(() => Promise.resolve('fake_token')),
+    isAuthenticated: true // Add this if your component depends on authentication status
+  });
+};
+
+// Test suite
+describe('AppLayout', () => {
+  beforeEach(() => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({
+          current: {
+            temp_f: 70,
+            wind_kph: 15,
+            humidity: 60,
+            condition: { text: 'Sunny' },
+          },
+        }),
+      })
+    );
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+    useAuth0.mockReset();
+  });
+
+  test('renders loading state appropriately', () => {
+    render(<AppLayout/>);
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+  });
+
+  test('displays weather data after loading', async () => {
+    mockAuth0();
+    render(<AppLayout />);
+    await waitFor(() => {
+      expect(screen.getByText('🌡️ Temperature: 70°F')).toBeInTheDocument();
+      expect(screen.getByText('🌬️ Wind: 15 kph')).toBeInTheDocument();
+      expect(screen.getByText('💧 Humidity: 60%')).toBeInTheDocument();
+      expect(screen.getByText('🔎 Condition: Sunny')).toBeInTheDocument();
+    });
+  });
+
+  it('toggles the menu on hamburger icon click', () => {
+    mockAuth0();
+    render(<AppLayout />);
+    const hamburger = screen.getByRole('button', { name: /hamburger/i });
+    fireEvent.click(hamburger);
+    expect(screen.getByText('Profile')).toBeVisible();
+    fireEvent.click(hamburger);
+    expect(screen.getByText('Profile')).not.toBeVisible();
+  });
+});

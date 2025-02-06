@@ -1,0 +1,258 @@
+/* Base layout styling */
+.app {
+  text-align: center;
+}
+
+/* Fixed header styling */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  background: #121010;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.weather-info {
+  color: #fff; /* Text color */
+  background: #007bff; /* Background color */
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: auto; /* This pushes the weather info to the right */
+  margin-right: 20px;
+}
+
+.weather-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Style for the title area */
+.title {
+  flex-grow: 1;
+  padding: 10px 0; /* Add some padding at the top and bottom */
+}
+
+/* Style for the Welcome component */
+.Welcome {
+  margin-top: 10vh;
+  padding-top: 16px; /* Make space for the fixed header */
+  font-size: 1.2em;
+}
+
+/* Style for loading component */
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Content area styling */
+.content {
+  padding: 20px 20px 20px; /* Padding on top should be at least the height of the header plus some */
+  margin-top: 0px; /* Same as header height to prevent overlap */
+}
+
+/* Horizontal menu styling */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Reset default margin for ul */
+}
+
+ul li a {
+  text-decoration: none;
+  color: #007bff;
+  padding: 8px 16px;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+ul li a:hover {
+  color: #0056b3;
+}
+.notes-app{
+  padding-top: 120px;
+}
+/* Logout button styling */
+.exit-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.exit-button:hover {
+  background-color: #bd2130;
+}
+
+/* Hamburger menu and dropdown menu styling */
+.hamburger {
+  display: flex; /* Always show hamburger icon */
+  flex-direction: column;
+  cursor: pointer;
+  padding: 15px;
+  gap: 5px;
+  color: white;
+  z-index: 1001; /* Ensure it's above other content */
+}
+
+.hamburger .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+.header {
+  display: none; /* Hide the header by default */
+  flex-direction: column;
+  position: fixed;
+  top: 50px; /* Below the fixed position of the header container */
+  right: 0; /* Align to the right side */
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5); 
+  transition: all 0.3s ease-in-out;
+  padding-top: 0px; 
+  z-index: 101;/* Adds padding to the right of the menu */
+}
+
+.menu-open {
+  display: block; /* Display menu when hamburger is clicked */
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 35%; /* Full width */
+}
+
+ul li {
+  width: 35%; /* Full width */
+}
+
+ul li a {
+  display: block;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .header {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 13vh;
+    width: 100%;
+    /* transform: translateX(100%); */
+    transition: transform 0.3s ease;
+    padding: 0px 20px;
+  }
+
+  .menu-open {
+    display: flex; 
+    transform: translateX(0);
+  }
+}
+.login-container{
+  color: aliceblue;
+  }
+  .weather-display {
+    display: flex; /* Changed to flex to align items */
+    align-items: center; /* Align items vertically */
+    margin-left: 20px; /* Space from the hamburger menu */
+    flex: 1; /* Takes up the remaining space */
+    color: #fff;
+  }
+  
+  .weather-ticker {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .weather-ticker-content {
+    animation: ticker linear infinite;
+    display: inline-flex; /* Use inline-flex for better alignment */
+    align-items: center;
+    animation-duration: 30s; /* Adjust speed as needed */
+  }
+  
+  @keyframes ticker {
+    0% { transform: translate3d(100%, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+  }
+  
+  /* Ensure the ticker starts after the hamburger */
+  .hamburger {
+    z-index: 11; /* Higher than the ticker for proper layering */
+    position: relative;
+  }
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .header-container {
+      flex-direction: row;
+      padding: 0 20px; /* More padding on larger devices */
+    }
+    
+    /* Adjust other elements for iPads */
+    .weather-info {
+      margin-right: 40px; /* Increase margin for iPad */
+    }
+  
+    .title {
+      font-size: 1.5em; /* Increase font size for iPad */
+    }
+  
+    .Welcome {
+      padding-top: 70px; /* More space for the fixed header */
+    }
+  
+    /* Further styling specific to iPad */
+  }
+  
+  /* Styles for iPhones */
+  @media only screen and (max-width: 767px) {
+    .header-container {
+      flex-direction: column;
+      padding: 10px 0; /* Add padding on top and bottom */
+    }
+  
+    .weather-info {
+      margin: 10px 0; /* Centered on small screens */
+    }
+  
+    .title {
+      font-size: 1.2em; /* Slightly larger text for small screens */
+    }
+  
+    .Welcome {
+      padding-top: 60px; /* Adjust top padding */
+    }
+  
+    /* Adapt hamburger menu for small screens */
+    .hamburger {
+      margin-top: 5px; /* Adjust margin to align */
+    }
+  
+    /* Adapt content for small screens */
+    .content {
+      padding: 10px; /* Adjust padding */
+    }
+  
+    /* Make sure navigation is usable on small screens */
+    ul {
+      flex-direction: column;
+    }
+  
+    ul li a {
+      font-size: 14px; /* Adjust font size for better readability */
+    }
+  
+    /* Other styles to improve the layout on iPhones */
+  }

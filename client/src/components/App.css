@@ -1,0 +1,170 @@
+/* Improved and Responsive App.css */
+
+/* Basic Reset and Typography */
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f9fc;
+  color: #333;
+}
+.navbar {
+  height: 70px; /* Reduce the height as needed */
+  padding: 0 20px; /* Adjust padding as needed */
+  display: flex;
+  align-items: center;
+}
+/* Flexbox setup for the dashboard */
+.dashboard {
+  display: flex;
+  flex-direction: column; /* Changed to column to support mobile views */
+  min-height: 100vh;
+}
+.notes-app{
+  padding-top: 50px;
+}
+/* Main content styling with responsive padding */
+.main-content {
+  flex: 1;
+  padding-top: 60px;
+  padding: 20px; /* Reduced padding for smaller screens */
+  background: #fff;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  transition: margin 0.3s ease, padding 0.3s ease; /* Smooth transitions for margin and padding */
+}
+
+/* Responsive Grid for notes and events */
+.notes-grid,
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adaptive grid items */
+  grid-auto-rows: minmax(100px, auto);
+  gap: 20px;
+}
+
+/* Unified item styling for notes and events with better hover effects */
+.note-item,
+.event-item {
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Improved transitions */
+}
+
+.note-item:hover,
+.event-item:hover {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px); /* Slightly increased for better feedback */
+}
+
+/* Headers for notes and events */
+.notes-header,
+.event-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Button styling unified and improved */
+.notes-header button,
+.event-header button,
+.note-form button,
+.create-event-button {
+  font-size: 16px;
+  background: #007bff;
+  border: none;
+  padding: 10px 15px; /* Uniform padding */
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease; /* Added transform transition */
+}
+
+.notes-header button:hover,
+.event-header button:hover,
+.note-form button:hover,
+.create-event-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Visual feedback on hover */
+}
+
+/* Responsive form layouts */
+.note-form,
+.event-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input and Textarea Enhancements */
+textarea,
+input {
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  font-size: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Edit buttons with visual feedback */
+.edit-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.edit-buttons button {
+  flex: 1;
+  padding: 10px;
+  transition: background-color 0.2s ease, filter 0.2s ease;
+}
+
+.edit-buttons button:last-of-type {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-buttons button:hover {
+  filter: brightness(90%);
+}
+
+@media (max-width: 768px) {
+  .dashboard,
+  .main-content {
+    padding: 15px;
+  }
+
+  .main-content {
+    margin: 10px;
+    padding-top: 50px;
+  }
+
+  .notes-grid {
+    gap: 15px;
+  }
+  .navbar {
+    height: 40px; /* Even smaller height for mobile devices */
+    padding: 0 10px; /* Less padding on the sides for small screens */
+  }
+  .note-item {
+    padding: 10px; /* Smaller padding for a less cluttered look on small screens */
+  }
+
+  /* This ensures that your headers don't take up too much space on small screens */
+  .notes-header,
+  .event-header {
+    padding: 10px 15px;
+    font-size: 14px; /* Smaller font size for small screens */
+  }
+}

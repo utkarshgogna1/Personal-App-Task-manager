@@ -1,0 +1,170 @@
+/* Base Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .app-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Changed to flex-start to allow natural top down layout */
+    padding-top: 100px; /* Increased top padding to push content down under navbar */
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+  
+  .navbar h1 {
+    margin: 0;
+  }
+  .world-clock{
+    position: relative;
+    padding-top: 150px;
+  }
+  /* Timezone Styles */
+  .timezone-container {
+   padding-top: 100px; 
+    width: 100%;
+    max-width: 40em;
+    margin: 1em auto;
+    padding: 1em;
+  }
+  
+  .timezone-block {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 300px; /* Fixed width for each timezone block */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  }
+  .timezone-block {
+    /* Slightly lighter than the app background */
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 400px; /* Fixed width for each timezone block */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  }
+  .timezone-name {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .timezone-time {
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  /* Dropdown Styles */
+  .dropdown-container {
+    position: relative;
+    padding-top: 20px;
+  }
+  
+  .timezone-dropdown {
+    position: absolute;
+    top: 100%; /* Position right below the input field */
+    left: 0;
+    background-color: #ffffff;
+    width: auto; /* Width according to content, with a minimum width */
+    min-width: 200px; /* Minimum width so it's not too small */
+    max-height: 300px; /* Maximum height before scrolling */
+    overflow-y: auto; /* Enable scroll on overflow */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    z-index: 10;
+  }
+  
+  .timezone-dropdown li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+  }
+  
+  .timezone-dropdown li:last-child {
+    border-bottom: none;
+  }
+  
+  .timezone-dropdown li:hover {
+    background: #f7f7f7;
+  }
+  
+  /* Button Styles */
+  .add-timezone-button {
+    background: #09f;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 20px 0;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .app-container {
+      padding-top: 60px; /* Adjust padding for smaller screens */
+    }
+  
+    .navbar h1 {
+      font-size: 18px; /* Adjust font size for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .timezone-block,
+    .timezone-dropdown li {
+      padding: 15px; /* Adjust padding for smaller screens */
+    }
+  
+    .add-timezone-button {
+      padding: 8px 12px; /* Adjust button padding for smaller screens */
+      font-size: 14px; /* Adjust button font size for smaller screens */
+    }
+  }
+  
+  /* Utilities */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  @media (max-width: 768px) {
+    #navbar-links {
+      display: none;
+      flex-direction: column;
+    }
+  
+    #navbar-links.is-active {
+      display: flex;
+    }
+  
+    .hamburger-menu {
+      display: block;
+    }
+  }

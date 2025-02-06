@@ -1,0 +1,52 @@
+.home {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .event-list,
+  .login-container {
+    margin: 20px 0;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  /* Tablet (e.g., iPad) */
+  @media (min-width: 768px) {
+    .home {
+      padding: 40px;
+    }
+  
+    .event-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+    }
+  
+    .btn-primary,
+    .btn-secondary {
+      display: inline-block;
+      margin: 10px;
+    }
+  }
+  
+  /* Desktop */
+  @media (min-width: 992px) {
+    .home {
+      padding: 60px;
+    }
+  
+    .event-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    .login-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
